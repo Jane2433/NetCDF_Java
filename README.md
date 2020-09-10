@@ -1,8 +1,7 @@
-<<<<<<< HEAD
 ## NetCdf 简介
 使用 Panoply 软件打开 nc 文件，可以看到 nc 文件的基本信息：
 
-![ncInfo](https://cdn.jsdelivr.net/gh/augustuZzl/jsdelivr-cdn/img/2020/20200910094806.png)
+![ncInfo](https://github.com/augustuZzl/NetCDF_Java/raw/master/imgs/20200910094806.png)
 
 - 维(dimension)
 	可以理解为数学中的向量，或者坐标轴，例如此 nc 文件就有 3 个维：经度、纬度、时间。他的温度数据就体现在这 3 个维上。
@@ -15,13 +14,13 @@
 可以直接在 panoply 中双击 tmin 变量来绘制该数据，通过这种方式可以大致的了解数据，但这种绘制效果不够精细，我们通过 ArcMap 来绘制：
 【多维工具 -> 创建netcdf栅格图层】
 
-![nc栅格图层](https://cdn.jsdelivr.net/gh/augustuZzl/jsdelivr-cdn/img/2020/20200910101423.png)
+![nc栅格图层](https://github.com/augustuZzl/NetCDF_Java/raw/master/imgs/20200910101423.png)
 
 这时我们就可以将栅格导出 ASCII 文来看看 nc 文件的真正内容了。
 
 【转换工具 -> 由栅格转出 -> 栅格转ASCII】
 
-![ncAscII数据](https://cdn.jsdelivr.net/gh/augustuZzl/jsdelivr-cdn/img/2020/20200910102710.png)
+![ncAscII数据](https://github.com/augustuZzl/NetCDF_Java/raw/master/imgs/20200910102710.png)
 
 - xllcorner、yllcorner：左下角的坐标（-180、-90）
 - cellsize：像元的大小，此处表示每个像元占 1.5°，这也是栅格图层看起来颗粒感满满的原因，我们后面会对它进行插值，提高他的分辨率，让它过度起来更平滑
@@ -29,7 +28,7 @@
 - NODATA_value：无数据的值，表示没有温度数据就用 -9999 代替，因为此 nc 文件是温度数据，所以没有出现无数据的情况。
                 但如果 nc 文件表示的是海浪、洋流这些海洋数据，那么陆地上就可以用 -9999 来表示了。
 
-![nc像元绘制原理](https://cdn.jsdelivr.net/gh/augustuZzl/jsdelivr-cdn/img/2020/20200910104611.png)
+![nc像元绘制原理](https://github.com/augustuZzl/NetCDF_Java/raw/master/imgs/20200910104611.png)
 
 程序读取的是每个像元中心点的坐标及对应的数据值。
 
@@ -152,7 +151,7 @@ try {
 }
 ```
 
-![ncNewInfo](https://cdn.jsdelivr.net/gh/augustuZzl/jsdelivr-cdn/img/2020/20200910115117.png)
+![ncNewInfo](https://github.com/augustuZzl/NetCDF_Java/raw/master/imgs/20200910115117.png)
 
 ## 写入 NetCdf 文件
 
@@ -212,7 +211,7 @@ try {
 
 ## 双线性插值
 
-![双线性插值](https://upload.wikimedia.org/wikipedia/commons/e/e7/Bilinear_interpolation.png)
+![双线性插值](https://github.com/augustuZzl/NetCDF_Java/raw/master/imgs/Bilinear_interpolation.png)
 
 ```java
 public static float linearInterpolate(double x, double x1, double x2, double x1value, double x2value) {
@@ -356,8 +355,4 @@ public static void interpolate(String srcNcPath, String outputNcPath) {
 
 查看插值后的效果，发现颜色过度更加平滑了。
 
-![插值nc栅格图层](https://cdn.jsdelivr.net/gh/augustuZzl/jsdelivr-cdn/img/2020/20200910161135.png)
-=======
-# NetCDF_Java
-使用NetCDF Java库读取、创建、写入nc
->>>>>>> 2ca9635e4f4700daee22612a2a7d309c68c7b5b5
+![插值nc栅格图层](https://github.com/augustuZzl/NetCDF_Java/raw/master/imgs/20200910161135.png)
